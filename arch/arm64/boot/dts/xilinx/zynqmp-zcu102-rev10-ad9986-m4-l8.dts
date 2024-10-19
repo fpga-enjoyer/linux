@@ -56,7 +56,7 @@
 		adi,pll1-ref-prio-ctrl = <0xE1>; /* prefer CLKIN1 -> CLKIN0 -> CLKIN2 -> CLKIN3 */
 		adi,pll1-ref-autorevert-enable;
 
-		adi,pll2-output-frequency = <3000000000>;
+		adi,pll2-output-frequency = <2949120000>;
 
 		adi,sysref-timer-divider = <1024>;
 		adi,pulse-generator-mode = <0>;
