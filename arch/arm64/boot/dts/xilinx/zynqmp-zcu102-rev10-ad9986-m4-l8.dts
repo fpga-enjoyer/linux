@@ -16,8 +16,8 @@
 
 &axi_ad9081_adxcvr_rx {
         /* Switch to QPLL */
-	adi,sys-clk-select = <XCVR_QPLL>;
-	adi,out-clk-select = <XCVR_REFCLK_DIV2>;
+	adi,sys-clk-select = <0x00>;
+	adi,out-clk-select = <4>;
 
 };
 
