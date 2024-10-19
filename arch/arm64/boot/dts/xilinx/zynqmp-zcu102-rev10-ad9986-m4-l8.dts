@@ -56,7 +56,7 @@
 
 		adi,pll1-clkin-frequencies = <122880000 30720000 0 0>;
 		//adi,pll1-clkin-frequencies = <100000000 10000000 0 0>;
-		adi,pll1-ref-prio-ctrl = <0xE4>; /* prefer CLKIN1 -> CLKIN0 -> CLKIN2 -> CLKIN3 */
+		adi,pll1-ref-prio-ctrl = <0xE1>; /* prefer CLKIN1 -> CLKIN0 -> CLKIN2 -> CLKIN3 */
 		adi,pll1-ref-autorevert-enable;
 
 		adi,vcxo-frequency = <122880000>;
@@ -64,7 +64,7 @@
 
 		adi,pll1-loop-bandwidth-hz = <200>;
 		adi,pll1-charge-pump-current-ua = <720>;
-		adi,pfd1-maximum-limit-frequency-hz = <0>; /* 1 MHz */
+		adi,pfd1-maximum-limit-frequency-hz = <1000000>; /* 1 MHz */
 
 		adi,pll2-output-frequency = <3000000000>;
 
@@ -143,8 +143,9 @@
 };
 
 &fmc_spi {
+	/delete-node/ ad9081@0;
 
-	trx0_ad9081: ad9081@0 {
+	trx0_ad9081: ad9986@0 {
 		#address-cells = <1>;
 		#size-cells = <0>;
 		compatible = "adi,ad9986";
@@ -187,8 +188,19 @@
 				ad9081_dac1: dac@1 {
 					reg = <1>;
 					adi,crossbar-select = <&ad9081_tx_fddc_chan1>;
-					adi,nco-frequency-shift-hz = /bits/ 64 <1100000000>; /* 1100 MHz */
+					adi,nco-frequency-shift-hz = /bits/ 64 <2100000000>; /* 1100 MHz */
 				};
+				ad9081_dac2: dac@2 {
+					reg = <2>;
+					adi,crossbar-select = <&ad9081_tx_fddc_chan2>;
+					adi,nco-frequency-shift-hz = /bits/ 64 <2200000000>; /* 1100 MHz */
+				};
+				ad9081_dac3: dac@3 {
+					reg = <3>;
+					adi,crossbar-select = <&ad9081_tx_fddc_chan3>;
+					adi,nco-frequency-shift-hz = /bits/ 64 <2300000000>; /* 1100 MHz */
+				};
+
 			};
 
 			adi,channelizer-paths {
@@ -208,6 +220,18 @@
 					adi,nco-frequency-shift-hz =  /bits/ 64 <0>;
 
 				};
+				ad9081_tx_fddc_chan2: channel@2 {
+					reg = <2>;
+					adi,gain = <2048>; /* 2048 * 10^(gain_dB/20) */
+					adi,nco-frequency-shift-hz =  /bits/ 64 <0>;
+
+				};
+				ad9081_tx_fddc_chan3: channel@3 {
+					reg = <3>;
+					adi,gain = <2048>; /* 2048 * 10^(gain_dB/20) */
+					adi,nco-frequency-shift-hz =  /bits/ 64 <0>;
+
+				};
 			};
 
 			adi,jesd-links {
@@ -218,7 +242,9 @@
 					#address-cells = <1>;
 					#size-cells = <0>;
 					reg = <0>;
-                                        adi,logical-lane-mapping = /bits/ 8 <0 2 7 6 1 5 4 3>;
+                                        adi,logical-lane-mapping = /bits/ 8 <0 2 7 7 1 7 7 3>;
+                                        //adi,logical-lane-mapping = /bits/ 8 <0 2 7 6 1 5 4 3>;
+
 
 					adi,link-mode = <17>;			/* JESD Quick Configuration Mode */
 					adi,subclass = <1>;			/* JESD SUBCLASS 0,1,2 */
@@ -236,7 +262,7 @@
 					adi,samples-per-converter-per-frame = <1>; /* JESD S */
 					adi,high-density = <1>;			/* JESD HD */
 
-                                        adi,tpl-phase-adjust = <12>;
+                                        adi,tpl-phase-adjust = <6>;
 				};
 			};
 		};
@@ -257,7 +283,7 @@
 					adi,nco-frequency-shift-hz =  /bits/ 64 <2450000000>;
 					adi,nco-mixer-mode = <AD9081_ADC_NCO_VIF>;
 					//adi,crossbar-select = <&ad9081_rx_fddc_chan0>, <&ad9081_rx_fddc_chan2>; /* Static for now */
-				};
+				};CH
 				ad9081_adc1: adc@1 {
 					reg = <1>;
 					adi,decimation = <6>;
@@ -299,7 +325,9 @@
 						 <&ad9081_rx_fddc_chan0 FDDC_I>, <&ad9081_rx_fddc_chan0 FDDC_Q>,
 						 <&ad9081_rx_fddc_chan1 FDDC_I>, <&ad9081_rx_fddc_chan1 FDDC_Q>;
 
-                                        adi,logical-lane-mapping = /bits/ 8 <2 0 7 6 5 4 3 1>;
+                                        //adi,logical-lane-mapping = /bits/ 8 <2 0 7 6 5 4 3 1>;
+                                        adi,logical-lane-mapping = /bits/ 8 <2 0 7 7 7 7 3 1>;
+
 
 					adi,link-mode = <18>;			/* JESD Quick Configuration Mode */
 					adi,subclass = <1>;			/* JESD SUBCLASS 0,1,2 */
