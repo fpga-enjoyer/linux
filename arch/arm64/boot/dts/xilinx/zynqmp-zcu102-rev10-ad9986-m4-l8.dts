@@ -125,8 +125,6 @@
 };
 
 &fmc_spi {
-	/delete-node/ ad9081@0;
-
 	trx0_ad9081: ad9986@0 {
 		#address-cells = <1>;
 		#size-cells = <0>;
