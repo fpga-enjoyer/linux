@@ -14,6 +14,10 @@
 #include <dt-bindings/iio/frequency/hmc7044.h>
 #include <dt-bindings/iio/adc/adi,ad9081.h>
 
+#define HMC7044_PLL2_FREQUENCY	2949120000
+#define AD9986_DAC_FREQUENCY	11796480000
+#define AD9986_ADC_FREQUENCY	3932160000
+
 &axi_ad9081_adxcvr_rx {
 	adi,sys-clk-select = <XCVR_CPLL>;
 };
@@ -52,7 +56,7 @@
 		adi,pll1-ref-prio-ctrl = <0xE1>; /* prefer CLKIN1 -> CLKIN0 -> CLKIN2 -> CLKIN3 */
 		adi,pll1-ref-autorevert-enable;
 
-		adi,pll2-output-frequency = <3000000000>;
+		adi,pll2-output-frequency = <HMC7044_PLL2_FREQUENCY>;
 
 		adi,sysref-timer-divider = <1024>;
 		adi,pulse-generator-mode = <0>;
@@ -129,6 +133,9 @@
 };
 
 &fmc_spi {
+
+	/delete-node/ ad9081@0;
+
 	trx0_ad9081: ad9986@0 {
 		#address-cells = <1>;
 		#size-cells = <0>;
@@ -156,7 +163,7 @@
 			#size-cells = <0>;
 			#address-cells = <1>;
 
-			adi,dac-frequency-hz = /bits/ 64 <12000000000>;
+			adi,dac-frequency-hz = /bits/ 64 <AD9986_DAC_FREQUENCY>;
 
 			adi,main-data-paths {
 				#address-cells = <1>;
@@ -253,7 +260,7 @@
 			#size-cells = <0>;
 			#address-cells = <1>;
 
-			adi,adc-frequency-hz = /bits/ 64 <6000000000>;
+			adi,adc-frequency-hz = /bits/ 64 <AD9986_ADC_FREQUENCY>;
 
 			adi,main-data-paths {
 				#address-cells = <1>;
