@@ -55,15 +55,14 @@
 		* VCXO = 100.000 MHz, XO = 100.000MHz (AD9081-FMC-EBZ-A2 & AD9082-FMC-EBZ-A2)
 		* To determine which board is which, read the freqency printed on the VCXO
 		* or use the fru-dump utility:
-		* #fru-dump -b /sys/bus/i2c/devices/15-0050/eeprom
 		*/
-
+		
 		adi,pll1-clkin-frequencies = <122880000 30720000 0 0>;
 		adi,vcxo-frequency = <122880000>;
 
 		//adi,pll1-clkin-frequencies = <100000000 10000000 0 0>;
 		adi,pll1-ref-prio-ctrl = <0xE1>; /* prefer CLKIN1 -> CLKIN0 -> CLKIN2 -> CLKIN3 */
-		adi,pll1-ref-autorevert-enable;
+		//adi,pll1-ref-autorevert-enable;
 
 		//adi,vcxo-frequency = <100000000>;
 
@@ -167,6 +166,8 @@
 		#jesd204-cells = <2>;
 		jesd204-top-device = <0>; /* This is the TOP device */
 		jesd204-link-ids = <FRAMER_LINK0_RX DEFRAMER_LINK0_TX>;
+
+		jesd204-ignore-errors;
 
 		jesd204-inputs =
 			<&axi_ad9081_core_rx 0 FRAMER_LINK0_RX>,
