@@ -16,15 +16,15 @@
 
 &axi_ad9081_adxcvr_tx {
         /* Switch to QPLL */
-	adi,sys-clk-select = <XCVR_QPLL>;
-	adi,out-clk-select = <XCVR_REFCLK_DIV2>;
+	adi,sys-clk-select = <XCVR_CPLL>;
+	adi,out-clk-select = <XCVR_REFCLK_DIV>;
 
 };
 
 &axi_ad9081_adxcvr_rx {
         /* Switch to CPLL */
 	adi,sys-clk-select = <XCVR_CPLL>;
-	adi,out-clk-select = <XCVR_REFCLK_DIV2>;
+	adi,out-clk-select = <XCVR_REFCLK_DIV>;
 
 };
 
