@@ -28,10 +28,6 @@
 
 };
 
-&axi_ad9081_core_tx {
-	adi,axi-pl-fifo-enable;
-};
-
 &spi1 {
 	status = "okay";
 
@@ -194,7 +190,8 @@
 					reg = <1>;
 					adi,crossbar-select = <&ad9081_tx_fddc_chan1>;
 					adi,nco-frequency-shift-hz = /bits/ 64 <2450000000>; /* 1100 MHz */
-				};
+				};				
+
 			};
 
 			adi,channelizer-paths {
@@ -214,6 +211,7 @@
 					adi,nco-frequency-shift-hz =  /bits/ 64 <0>;
 
 				};
+
 			};
 
 			adi,jesd-links {
