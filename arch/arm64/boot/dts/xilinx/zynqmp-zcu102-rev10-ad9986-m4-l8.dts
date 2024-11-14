@@ -16,15 +16,15 @@
 
 &axi_ad9081_adxcvr_tx {
         /* Switch to QPLL */
-	adi,sys-clk-select = <XCVR_CPLL>;
-	adi,out-clk-select = <XCVR_REFCLK>;
+	adi,sys-clk-select = <XCVR_QPLL>;
+	adi,out-clk-select = <XCVR_REFCLK_DIV2>;
 
 };
 
 &axi_ad9081_adxcvr_rx {
         /* Switch to CPLL */
 	adi,sys-clk-select = <XCVR_CPLL>;
-	adi,out-clk-select = <XCVR_REFCLK>;
+	adi,out-clk-select = <XCVR_REFCLK_DIV2>;
 
 };
 
@@ -95,7 +95,7 @@
 		hmc7044_c2: channel@2 {
 			reg = <2>;
 			adi,extended-name = "DEV_REFCLK";
-			adi,divider = <12>;
+			adi,divider = <6>;
 			adi,driver-mode = <HMC7044_DRIVER_MODE_LVDS>;
 		};
 		hmc7044_c3: channel@3 {
@@ -129,7 +129,7 @@
 		hmc7044_c12: channel@12 {
 			reg = <12>;
 			adi,extended-name = "FPGA_REFCLK2";
-			adi,divider = <4>;
+			adi,divider = <6>;
 			adi,driver-mode = <HMC7044_DRIVER_MODE_LVDS>;
 		};
 		hmc7044_c13: channel@13 {
