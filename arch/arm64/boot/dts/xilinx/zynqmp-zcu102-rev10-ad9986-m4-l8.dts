@@ -66,7 +66,7 @@
 		adi,pll1-charge-pump-current-ua = <720>;
 		adi,pfd1-maximum-limit-frequency-hz = <1000000>; /* 1 MHz */
 
-		adi,pll2-output-frequency = <3000000000>;
+		adi,pll2-output-frequency = <2949120000>;
 
 		adi,sysref-timer-divider = <1024>;
 		adi,pulse-generator-mode = <0>;
@@ -173,7 +173,7 @@
 			#size-cells = <0>;
 			#address-cells = <1>;
 
-			adi,dac-frequency-hz = /bits/ 64 <12000000000>;
+			adi,dac-frequency-hz = /bits/ 64 <11796480000>;
 
 			adi,main-data-paths {
 				#address-cells = <1>;
@@ -240,7 +240,7 @@
 					adi,samples-per-converter-per-frame = <1>; /* JESD S */
 					adi,high-density = <1>;			/* JESD HD */
 
-                                        adi,tpl-phase-adjust = <6>;
+                                        adi,tpl-phase-adjust = <3>;
 				};
 			};
 		};
@@ -249,7 +249,7 @@
 			#size-cells = <0>;
 			#address-cells = <1>;
 
-			adi,adc-frequency-hz = /bits/ 64 <6000000000>;
+			adi,adc-frequency-hz = /bits/ 64 <5898240000>;
 
 			adi,main-data-paths {
 				#address-cells = <1>;
