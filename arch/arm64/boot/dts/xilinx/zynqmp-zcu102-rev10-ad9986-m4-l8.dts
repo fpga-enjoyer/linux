@@ -240,7 +240,7 @@
 					adi,samples-per-converter-per-frame = <1>; /* JESD S */
 					adi,high-density = <1>;			/* JESD HD */
 
-                                        adi,tpl-phase-adjust = <3>;
+                                        adi,tpl-phase-adjust = <5>;
 				};
 			};
 		};
