@@ -56,8 +56,8 @@
 		axi_ad9081_core_rx: axi-ad9081-rx-hpc@84a10000 {
 			compatible = "adi,axi-ad9081-rx-1.0";
 			reg = <0x84a10000 0x8000>;
-			dmas = <&rx_dma 0>;
-			dma-names = "rx";
+			/*dmas = <&rx_dma 0>;
+			dma-names = "rx";*/
 			spibus-connected = <&trx0_ad9081>;
 
 			jesd204-device;
@@ -68,13 +68,13 @@
 		axi_ad9081_core_tx: axi-ad9081-tx-hpc@84b10000 {
 			compatible = "adi,axi-ad9081-tx-1.0";
 			reg = <0x84b10000 0x4000>;
-			dmas = <&tx_dma 0>;
-			dma-names = "tx";
+			/*dmas = <&tx_dma 0>;
+			dma-names = "tx";*/
 			clocks = <&trx0_ad9081 1>;
 			clock-names = "sampl_clk";
 			spibus-connected = <&trx0_ad9081>;
 			//adi,axi-pl-fifo-enable;
-			adi,axi-data-offload-connected = <&axi_data_offload_tx>;
+			/*adi,axi-data-offload-connected = <&axi_data_offload_tx>;*/
 
 			jesd204-device;
 			#jesd204-cells = <2>;
